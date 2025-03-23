@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <title>ఫీచర్ 4: టాప్ పంట సిఫార్సులు</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ఫీచర్ 4: టాప్ పంట సిఫార్సులు</h1>
+        <form method="POST">
+            <label for="district">డిస్ట్రిక్ట్ ఎంచుకోండి:</label><br>
+            <select id="district" name="district" required>
+                <option value="" disabled selected>జిల్లాను ఎంచుకోండి</option>
+                {% for district in districts %}
+                    <option value="{{ district }}">{{ district }}</option>
+                {% endfor %}
+            </select><br>
+            <label for="season">సీజన్ ఎంచుకోండి:</label><br>
+            <select id="season" name="season" required>
+                <option value="" disabled selected>సీజన్‌ను ఎంచుకోండి</option>
+                <option value="రబీ">రబీ</option>
+                <option value="ఖరీఫ్">ఖరీఫ్</option>
+            </select><br>
+            <input type="submit" value="సిఫార్సులు పొందండి">
+        </form>
+
+        {% if result is defined %}
+            {% if result %}
+                <div class="result">
+                    <h2>టాప్ పంట సిఫార్సులు:</h2>
+                    {% for rec in result %}
+                        <div class="recommendation">
+                            <p><strong>పంట:</strong> {{ rec.Crop }}</p>
+                            <p><strong>కేటగిరీ:</strong> {{ rec.Category }}</p>
+                            <p><strong>పంట తర్వాత:</strong> {{ rec.CNext }}</p>
+                            <p><strong>పంట గత:</strong> {{ rec.CLast }}</p>
+                            <p><strong>పంట రవాణా:</strong> {{ rec.CTransp }}</p>
+                            <p><strong>సేచన రకం:</strong> {{ rec.IrriType }}</p>
+                            <p><strong>సేచన మూలం:</strong> {{ rec.IrriSource }}</p>
+                            <p><strong>ఊహించిన దిగుబడి:</strong> {{ rec.ExpYield }}</p>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="error">
+                    <p>ఎటువంటి సిఫార్సులు కనుగొనబడలేదు. దయచేసి చెల్లుబాటు అయ్యే జిల్లా మరియు సీజన్‌ను తనిఖీ చేయండి.</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>

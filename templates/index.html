@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <title>పంట సిఫార్సు సిస్టమ్</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>కృషిమిత్ర</h1>
+        <p>ప్రారంభించడానికి ఒక ఫీచర్‌ను ఎంచుకోండి:</p>
+        <div class="feature-box">
+            <a href="{{ url_for('feature1') }}" target="_blank">ఫీచర్ 1: NPK నుండి పంట ప్రెడిక్షన్</a>
+        </div>
+        <div class="feature-box">
+            <a href="{{ url_for('feature2') }}" target="_blank">ఫీచర్ 2: పంట కోసం NPK సిఫార్సు</a>
+        </div>
+        <div class="feature-box">
+            <a href="{{ url_for('feature3') }}" target="_blank">ఫీచర్ 3: భూమి విభజన మరియు పంట సిఫార్సు</a>
+        </div>
+        <div class="feature-box">
+            <a href="{{ url_for('feature4') }}" target="_blank">ఫీచర్ 4: టాప్ పంట సిఫార్సులు</a>
+        </div>
+    </div>
+
+    <!-- Chatbase Script -->
+    <script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="pElEFTNhIDvaYxM9SALTI";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+</body>
+</html>

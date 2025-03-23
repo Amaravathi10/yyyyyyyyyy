@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <title>ఫీచర్ 2: పంట కోసం NPK సిఫార్సు</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ఫీచర్ 2: పంట కోసం NPK సిఫార్సు</h1>
+        <form method="POST">
+            <label>ఒక పంటను ఎంచుకోండి:</label><br>
+            <select name="crop" required>
+                {% for crop in crops %}
+                <option value="{{ crop }}">{{ crop }}</option>
+                {% endfor %}
+            </select><br>
+            <input type="submit" value="సిఫార్సులు పొందండి">
+        </form>
+        {% if result %}
+        <div class="result">
+            <h2>NPK సిఫార్సులు:</h2>
+            {% for nutrient, values in result.items() %}
+            <h3>{{ nutrient }}:</h3>
+            <p>సిఫార్సు విలువ: {{ values.predicted|round(2) }}</p>
+            <p>ఐతిహాసిక రేంజ్: {{ values.min|round(2) }} నుండి {{ values.max|round(2) }}</p>
+            <p>ఐతిహాసిక సగటు: {{ values.mean|round(2) }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

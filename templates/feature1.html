@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <title>ఫీచర్ 1: NPK నుండి పంట ప్రెడిక్షన్</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>ఫీచర్ 1: NPK నుండి పంట ప్రెడిక్షన్</h1>
+        <form method="POST">
+            <label>మట్టిలో నైట్రోజన్ (N) సంగ్రహం:</label><br>
+            <input type="number" name="N" step="0.01" required><br>
+            <label>మట్టిలో ఫాస్ఫరస్ (P) సంగ్రహం:</label><br>
+            <input type="number" name="P" step="0.01" required><br>
+            <label>మట్టిలో పొటాషియం (K) సంగ్రహం:</label><br>
+            <input type="number" name="K" step="0.01" required><br>
+            <input type="submit" value="ప్రెడిక్ట్ చేయండి">
+        </form>
+        {% if result %}
+        <div class="result">
+            <h2>ఫలితాలు:</h2>
+            <p>ఉత్తమ సిఫార్సు పంట: {{ result.crop }}</p>
+            <h3>సమాన పంటలు:</h3>
+            {% for crop in result.similar %}
+            <p>పంట: {{ crop.crop }}</p>
+            <ul>
+                <li>N: {{ crop.N }}</li>
+                <li>P: {{ crop.P }}</li>
+                <li>K: {{ crop.K }}</li>
+            </ul>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
